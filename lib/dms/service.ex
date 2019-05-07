@@ -34,6 +34,9 @@ defmodule DMS.Service do
       {:error, {:already_started, _}} ->
         GenServer.cast(via_registry(id), :ping)
         :pong
+
+      _ ->
+        :pang
     end
   end
 
