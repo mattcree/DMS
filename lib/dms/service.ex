@@ -11,8 +11,7 @@ defmodule DMS.Service do
 
   @server __MODULE__
   @supervisor DMS.Service.Supervisor
-  # TODO Make timeout configurable.
-  @timeout 5 * 1000
+  @timeout Application.fetch_env!(:timeout, :"#{Mix.env()}")
 
   @doc """
   Signals service is alive.

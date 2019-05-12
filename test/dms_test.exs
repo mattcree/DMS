@@ -23,10 +23,11 @@ defmodule DMSTest do
     end
   end
 
-  test "service should die after 5 seconds" do
+  test "service should die after the configured interval" do
     id = "test-svc-2"
     assert :pong = DMS.ping(id)
-    Process.sleep(5_010)
+    timeout = Application.fetch_env!(:timeout, :"#{Mix.env()}") + 1
+    Process.sleep(timeout)
     refute DMS.alive?(id)
   end
 end
